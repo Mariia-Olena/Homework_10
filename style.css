@@ -8,7 +8,6 @@
     top: 200px;
     margin-left: auto;
     margin-right: auto;
-    border: grey solid 2px;
     overflow: hidden;
     position: relative;
 }
@@ -16,48 +15,68 @@
 .mountain {
     width: 0;
     height: 0;
-    border-left: 200px solid transparent;
-    border-right: 200px solid transparent;
-    border-bottom: 200px solid #4182b7;
     position: absolute;
-    bottom: 0;
-    left: 10px;
-}
-
-.mountain.right {
-    left: auto;
-    right: 10px;
-}
-
-.mountain.center {
     border-left: 190px solid transparent;
     border-right: 190px solid transparent;
     border-bottom: 160px solid #4182b7;
     left: 180px;
+    bottom: 0;
 }
+
+.mountain::before {
+    content: "";
+    position: absolute;
+    left: -85px;
+    bottom: -160px;
+    border-left: 200px solid transparent;
+    border-right: 200px solid transparent;
+    border-bottom: 200px solid #4182b7;
+}
+
+.mountain::after {
+    content: "";
+    position: absolute;
+    right: -40px;
+    bottom: -160px;
+    border-left: 200px solid transparent;
+    border-right: 200px solid transparent;
+    border-bottom: 200px solid #4182b7;
+}
+
 
 .sun {
     width: 100px;
 	height: 100px;
-	background:rgb(233, 199, 9);
+	background-color: rgb(233, 199, 9);
 	border-radius: 50px;
     position: absolute;
     top: 235px;
     left: 370px;
+    animation-name: dawn;
+    animation-duration: 8s;
+    animation-iteration-count: infinite;
+    animation-direction: alternate;
+    transition-timing-function: ease;
 }
 
 .cloud {
-    background-color: #dddddd;
+    background-color: #ddd;
     width: 150px;
     height: 50px;
     border-radius: 30px;
     position: absolute;
     top: 220px;
-    left: 100px;
+    animation-name: sky;
+    animation-duration: 9s;
+    animation-iteration-count: infinite;
+    animation-direction: alternate;
+    transition-timing-function: ease;
+
 }
 
-.circle {
-    background-color: #dddddd;
+.cloud::before {
+    content: "";
+    background-color: #ddd;
     width: 80px;
     height: 80px;
     border-radius: 40px;
@@ -66,8 +85,9 @@
     left: 20px;
 }
 
-.circle-small {
-    background-color: #dddddd;
+.cloud::after {
+    content: "";
+    background-color: #ddd;
     width: 50px;
     height: 50px;
     border-radius: 25px;
@@ -77,17 +97,22 @@
 }
 
 .cloud-small {
-    background-color: #dddddd;
+    background-color: #ddd;
     width: 120px;
     height: 40px;
     border-radius: 20px;
     position: absolute;
     top: 220px;
-    right: 50px;
+    animation-name: sky;
+    animation-duration: 6s;
+    animation-iteration-count: infinite;
+    animation-direction: alternate;
+    transition-timing-function: ease-in;
 }
 
-.cloud-small .circle {
-    background-color: #dddddd;
+.cloud-small::after{
+    content: "";
+    background-color: #ddd;
     width: 60px;
     height: 60px;
     border-radius: 30px;
@@ -96,12 +121,99 @@
     left: 17px;
 }
 
-.cloud-small .circle-small {
-    background-color: #dddddd;
+.cloud-small::before {
+    content: "";
+    background-color: #ddd;
     width: 36px;
     height: 36px;
     border-radius: 18px;
     position: absolute;
     top: -22px;
     right: 17px;
+}
+
+.cloud1 {
+    background-color: #ddd;
+    width: 150px;
+    height: 50px;
+    border-radius: 30px;
+    position: absolute;
+    top: 220px;
+    animation-name: sky;
+    animation-duration: 12s;
+    animation-iteration-count: infinite;
+    animation-direction: alternate-reverse;
+    transition-timing-function: linear;
+}
+
+.cloud1::before {
+    content: "";
+    background-color: #ddd;
+    width: 80px;
+    height: 80px;
+    border-radius: 40px;
+    position: absolute;
+    top: -40px;
+    left: 20px;
+}
+
+.cloud1::after {
+    content: "";
+    background-color: #ddd;
+    width: 50px;
+    height: 50px;
+    border-radius: 25px;
+    position: absolute;
+    top: -27px;
+    right: 23px;
+}
+
+.cloud-small1 {
+    background-color: #ddd;
+    width: 120px;
+    height: 40px;
+    border-radius: 20px;
+    position: absolute;
+    top: 220px;
+    animation-name: sky;
+    animation-duration: 15s;
+    animation-iteration-count: infinite;
+    animation-direction: alternate-reverse;
+    transition-timing-function: ease-in-out;
+}
+
+.cloud-small1::after{
+    content: "";
+    background-color: #ddd;
+    width: 60px;
+    height: 60px;
+    border-radius: 30px;
+    position: absolute;
+    top: -32px;
+    left: 17px;
+}
+
+.cloud-small1::before {
+    content: "";
+    background-color: #ddd;
+    width: 36px;
+    height: 36px;
+    border-radius: 18px;
+    position: absolute;
+    top: -22px;
+    right: 17px;
+}
+
+@keyframes dawn {
+    0% {top: 235px; background-color: transparent;}
+    5% {top: 235px; background-color: transparent;}
+    10% {background-color: rgb(255, 123, 0)}
+    25% {background-color: rgb(233, 199, 9);}
+    100% {top: -100px; background-color: rgb(233, 199, 9);}
+}
+
+@keyframes sky {
+    0% {left: -150px; background-color: transparent;}
+    15% {left: -75px; background-color: #dddddd;}
+    100% {left: 700px; background-color: #dddddd;}
 }
